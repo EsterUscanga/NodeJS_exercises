@@ -9,7 +9,7 @@ const confirmationMessage = 'File uploaded and moved!'
 const statusCode = 200
 const headers = {'Content-Type': 'text/html'}
 
-http.createServer(function (req, res) {
+function createUploadFileServer(req, res) {
   if (req.url == fileUpload) {
     const form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
@@ -29,4 +29,5 @@ http.createServer(function (req, res) {
     res.write('</form>')
     return res.end()
   }
-}).listen(portNumber)
+}
+http.createServer(createUploadFileServer).listen(portNumber)
