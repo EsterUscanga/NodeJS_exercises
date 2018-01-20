@@ -1,13 +1,13 @@
-var http = require('http')
-var formidable = require('formidable')
-var fs = require('fs')
+const http = require('http')
+const formidable = require('formidable')
+const fs = require('fs')
 
 http.createServer(function (req, res) {
   if (req.url == '/fileupload') {
-    var form = new formidable.IncomingForm()
+    const form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
-      var oldpath = files.filetoupload.path
-      var newpath = '/home/ester/Estancias/NodeJS_exercises/Archivo_' + files.filetoupload.name;
+      const oldpath = files.filetoupload.path
+      const newpath = '/home/ester/Estancias/NodeJS_exercises/Archivo_' + files.filetoupload.name;
       fs.rename(oldpath, newpath, function (err) {
         if (err) throw err;
         res.write('File uploaded and moved!')
